@@ -9,11 +9,9 @@ const produtoSchema = new mongoose.Schema(
     valor: { type: Number, require: true },
     quantidade: { type: Number, require: true },
     img_url: { type: String, require: true },
-    created_at: { type: Date },
-    modified_at: { type: Date },
-    deleted_at: { type: Date },
   },
-  { versionKey: false }
+  { versionKey: false },
+  { timestamps: true }
 );
 
 const produto = mongoose.model("produtos", produtoSchema);
