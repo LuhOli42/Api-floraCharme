@@ -1,3 +1,5 @@
+import { carrinho } from "../models/Carrinho.js";
+import { favoritos } from "../models/Favoritos.js";
 import { usuario } from "../models/Usuario.js";
 import bcrypt from "bcrypt";
 
@@ -11,6 +13,17 @@ class UsuariosController {
       const usuarioSenhaCrypto = { ...usuarioBody, senha: senhaCrypto };
 
       const cadastroSucesso = await usuario.create(usuarioSenhaCrypto);
+
+      const criarFavoritos = await favoritos.create({
+        user_id: cadastroSucesso.id,
+        produto_id: [],
+      });
+
+      const criarCarrinho = await carrinho.create({
+        user_id: cadastroSucesso.id,
+        produto_id: [],
+        compra_finalizada: false,
+      });
 
       res.status(201).json({
         message: "Cadastrado com sucesso",

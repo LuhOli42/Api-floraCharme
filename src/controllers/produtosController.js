@@ -1,5 +1,6 @@
 import { produto } from "../models/Produto.js";
 
+
 class ProdutosController {
   static async listarProdutos(req, res) {
     try {

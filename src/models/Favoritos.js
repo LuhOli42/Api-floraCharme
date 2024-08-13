@@ -1,12 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
-const carrinhoSchema = new mongoose.Schema({
+const favoritosSchema = new mongoose.Schema({
   id: { type: mongoose.Schema.Types.ObjectId },
   user_id: { type: Schema.Types.ObjectId, ref: "usuarios", require: true },
   produtos_id: [{ type: Schema.Types.ObjectId, ref: "produtos" }],
-  compra_finalizada: { type: Boolean, require: true },
 });
 
-const carrinho = mongoose.model("carrinho", carrinhoSchema);
+const favoritos = mongoose.model("favoritos", favoritosSchema);
 
-export { carrinho, carrinhoSchema };
+export { favoritos, favoritosSchema };

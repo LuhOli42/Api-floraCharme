@@ -8,7 +8,7 @@ async function authenticate(req, res, next) {
 
   try {
     if (!authorization) {
-      res.status(404).json({ message: "Erro no token" });
+      return res.status(404).json({ message: "Erro no token" });
     }
     const token = authorization.split(" ")[1];
     const tokenVerify = await jwt.verify(token, senhaHash);
