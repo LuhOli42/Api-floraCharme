@@ -1,5 +1,5 @@
 import express from "express";
-import CarrinhoController from "../controllers/carrinhoController";
+import CarrinhoController from "../controllers/carrinhoController.js";
 
 const router = express.Router();
 

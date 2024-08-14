@@ -12,11 +12,8 @@ async function authenticate(req, res, next) {
     }
     const token = authorization.split(" ")[1];
     const tokenVerify = await jwt.verify(token, senhaHash);
-    console.log(tokenVerify);
 
     const usuarioAindaExiste = await usuario.findById(tokenVerify.id);
-
-    console.log(usuarioAindaExiste);
 
     if (!usuarioAindaExiste) {
       res.status(404).json({ message: "Erro no token" });

@@ -15,12 +15,12 @@ class UsuariosController {
       const cadastroSucesso = await usuario.create(usuarioSenhaCrypto);
 
       const criarFavoritos = await favoritos.create({
-        user_id: cadastroSucesso.id,
+        user_id: cadastroSucesso._id,
         produto_id: [],
       });
 
       const criarCarrinho = await carrinho.create({
-        user_id: cadastroSucesso.id,
+        user_id: cadastroSucesso._id,
         produto_id: [],
         compra_finalizada: false,
       });
