@@ -1,10 +1,15 @@
 import { produto } from "../models/Produto.js";
 
-
 class ProdutosController {
   static async listarProdutos(req, res) {
+    const quantidadeDeProdutos = req.query.quantidade || null;
+
+    console.log(quantidadeDeProdutos);
     try {
-      const listarProdutos = await produto.find({});
+      const listarProdutos = await produto
+        .find()
+        .sort({ created_at: -1 })
+        .limit(quantidadeDeProdutos);
       res.status(200).json(listarProdutos);
     } catch (error) {
       res
