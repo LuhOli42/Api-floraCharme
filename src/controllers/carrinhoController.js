@@ -10,7 +10,7 @@ class CarrinhoController {
         })
         .populate([{ path: "produtos_id", strictPopulate: false }]);
 
-      return res.status(200).json(carrinhoLocalizado);
+      return res.status(200).json(carrinhoLocalizado[0]);
     } catch (error) {
       res.status(500).json({
         messagem: `${error.message} - falha em nossos servidores`,
@@ -31,8 +31,6 @@ class CarrinhoController {
         carrinhoLocalizado[0]._id,
         carrinhoLocalizado[0]
       );
-
-      console.log(carrinhoLocalizado[0]);
 
       return res.sendStatus(201);
     } catch (error) {
@@ -61,7 +59,6 @@ class CarrinhoController {
         carrinhoLocalizado[0]._id,
         carrinhoLocalizado[0]
       );
-      console.log(atualizarInformacoes);
 
       return res.sendStatus(201);
     } catch (error) {

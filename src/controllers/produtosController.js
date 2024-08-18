@@ -4,7 +4,6 @@ class ProdutosController {
   static async listarProdutos(req, res) {
     const quantidadeDeProdutos = req.query.quantidade || null;
 
-    console.log(quantidadeDeProdutos);
     try {
       const listarProdutos = await produto
         .find()

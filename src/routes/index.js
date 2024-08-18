@@ -7,9 +7,11 @@ import compras from "./comprasRouter.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "../../swagger-output.json" assert { type: "json" };
 import bodyParser from "body-parser";
+import cors from "cors";
 
 const routes = (app) => {
   app.use(bodyParser.json());
+  app.use(cors());
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
   app.get("/", (req, res) => {
     return res.status(200).json({

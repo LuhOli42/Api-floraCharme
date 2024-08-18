@@ -21,7 +21,7 @@ class LoginController {
       );
 
       if (!senhaComparada) {
-        res.status(404).json({ messagem: "Senha ou usuarios errado" });
+        return res.status(404).json({ messagem: "Senha ou usuarios errado" });
       }
 
       const infoUsuario = {
@@ -33,7 +33,7 @@ class LoginController {
         expiresIn: "12h",
       });
 
-      res.status(200).json({ infoUsuario, token });
+      return res.status(200).json({ infoUsuario, token });
     } catch (error) {
       console.log(error);
       res
