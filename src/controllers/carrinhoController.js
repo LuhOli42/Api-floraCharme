@@ -1,4 +1,5 @@
 import { carrinho } from "../models/Carrinho.js";
+import aws from "aws-sdk";
 
 class CarrinhoController {
   static async mostrarCarrinho(req, res) {

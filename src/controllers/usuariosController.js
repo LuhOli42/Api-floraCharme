@@ -1,9 +1,32 @@
+import s3 from "../config/s3BucketConfig.js";
 import { carrinho } from "../models/Carrinho.js";
 import { favoritos } from "../models/Favoritos.js";
 import { usuario } from "../models/Usuario.js";
 import bcrypt from "bcrypt";
 
 class UsuariosController {
+  static async uploadImg(req, res) {
+    const { file } = req;
+    try {
+      const arquivo = await s3
+        .upload({
+          Bucket: process.env.KEY_NAME_S3,
+          Key: `clientes/${file.originalname}`,
+          Body: file.buffer,
+          ContentType: file.minetype,
+        })
+        .promise();
+
+      return res.json(arquivo);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ messagem: `${error.message} - falha em cadastrar usuario` });
+    }
+
+    return res.sendStatus(201);
+  }
+
   static async cadastrarUsuario(req, res) {
     try {
       const usuarioBody = req.body;
